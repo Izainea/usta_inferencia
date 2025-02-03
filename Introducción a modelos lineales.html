@@ -1,0 +1,1789 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Introducción a modelos lineales';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="📘 Modelos Lineales con Python" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Modelos Lineales - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    📘 Modelos Lineales con Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroducción a modelos lineales.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Introducción a modelos lineales.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">📌 Objetivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-son-importantes-los-modelos-lineales">🚀 ¿Por qué son importantes los Modelos Lineales?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-matematica-del-modelo-lineal">📊 Definición Matemática del Modelo Lineal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-buscamos-en-el-modelo">🔎 ¿Qué buscamos en el modelo?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-modelos-lineales">📌 Estimación de Parámetros en Modelos Lineales</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planteamiento-del-problema">✅ Planteamiento del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-estimacion-minimos-cuadrados-ordinarios">🔍 Criterio de Estimación: Mínimos Cuadrados Ordinarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-ols">🧪 Propiedades de los Estimadores OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-la-varianza-del-error">🔬 Estimación de la Varianza del Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">📊 Implementación en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-con-statsmodels">🛠️ Validación con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📌  Implementación en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-del-modelo-lineal">📌  Supuestos del Modelo Lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-linealidad">📌 Supuesto de Linealidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-supuesto-de-linealidad">🔍 Evaluación del Supuesto de Linealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-grafico-residuos-vs-valores-ajustados">📊 Análisis Gráfico: Residuos vs. Valores Ajustados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#posibles-senales-de-no-linealidad-en-los-residuos">🚨 Posibles señales de no linealidad en los residuos:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-ramsey-reset">🧪 Prueba de Ramsey RESET</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#que-evalua-esta-prueba">📌 ¿Qué evalúa esta prueba?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-funciona-la-prueba-de-ramsey-reset">🔬 ¿Por qué funciona la prueba de Ramsey RESET?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-evalua">📌 ¿Cómo se evalúa?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">📌 Interpretación:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-independencia-de-los-errores">📌 Supuesto de Independencia de los Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-del-supuesto">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-deteccion">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-durbin-watson">🧪 Prueba de Durbin-Watson</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📌 Interpretación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-autocorrelacion">🔧 Métodos para Corregir la Autocorrelación</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-homocedasticidad">📌 Supuesto de Homocedasticidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-breusch-pagan">🧪 Prueba de Breusch-Pagan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-de-la-prueba">📌 Hipótesis de la prueba:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-heterocedasticidad">🔧 Métodos para Corregir la Heterocedasticidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-normalidad-de-los-errores">📌 Supuesto de Normalidad de los Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-q-q-quantile-quantile">📊 Gráfico Q-Q (Quantile-Quantile)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-shapiro-wilk">🧪 Prueba de Shapiro-Wilk</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📌 Hipótesis de la prueba:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-no-normalidad">🔧 Métodos para Corregir la No Normalidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-no-multicolinealidad">📌 Supuesto de No Multicolinealidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-factor-de-inflacion-de-la-varianza-vif">🧪 Interpretación del Factor de Inflación de la Varianza (VIF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">📌 Interpretación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-multicolinealidad">🔧 Métodos para Corregir la Multicolinealidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-automatico-de-supuestos-en-modelos-lineales">📌 Diagnóstico Automático de Supuestos en Modelos Lineales</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-la-funcion">📊 Aplicación de la Función</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales-fundamentos-estimacion-y-evaluacion">
+<h1>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación<a class="headerlink" href="#modelos-lineales-fundamentos-estimacion-y-evaluacion" title="Link to this heading">#</a></h1>
+<p>Este cuaderno cubre de manera <strong>formal y aplicada</strong> los modelos de regresión lineal, desde su formulación matemática hasta su implementación en Python.</p>
+<section id="objetivos">
+<h2>📌 Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Definir y entender los modelos de regresión lineal.</strong></p></li>
+<li><p><strong>Explicar los supuestos fundamentales del modelo.</strong></p></li>
+<li><p><strong>Deducir matemáticamente la estimación de parámetros con mínimos cuadrados ordinarios (OLS).</strong></p></li>
+<li><p><strong>Implementar los modelos en Python y evaluar su validez.</strong></p></li>
+<li><p><strong>Aplicar pruebas estadísticas para validar los supuestos del modelo.</strong></p></li>
+</ol>
+</section>
+<section id="por-que-son-importantes-los-modelos-lineales">
+<h2>🚀 ¿Por qué son importantes los Modelos Lineales?<a class="headerlink" href="#por-que-son-importantes-los-modelos-lineales" title="Link to this heading">#</a></h2>
+<p>Los modelos de regresión lineal son la base de numerosos métodos en <strong>estadística, econometría y machine learning</strong>. Se utilizan para:</p>
+<ul class="simple">
+<li><p>Predicción de valores futuros.</p></li>
+<li><p>Identificación de relaciones entre variables.</p></li>
+<li><p>Evaluación de impacto en estudios experimentales.</p></li>
+</ul>
+<p>Ahora, pasemos a su formulación matemática.</p>
+</section>
+<section id="definicion-matematica-del-modelo-lineal">
+<h2>📊 Definición Matemática del Modelo Lineal<a class="headerlink" href="#definicion-matematica-del-modelo-lineal" title="Link to this heading">#</a></h2>
+<p>Un <strong>modelo de regresión lineal múltiple</strong> con <span class="math notranslate nohighlight">\(p\)</span> variables predictoras se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p X_{ip} + \varepsilon_i
+\]</div>
+<p>En notación matricial:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} \in \mathbb{R}^{n \times 1}\)</span> es el vector de respuestas.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{n \times (p+1)}\)</span> es la <strong>matriz de diseño</strong> con una columna de unos para el intercepto.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta} \in \mathbb{R}^{(p+1) \times 1}\)</span> es el vector de coeficientes.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon} \in \mathbb{R}^{n \times 1}\)</span> representa los errores aleatorios.</p></li>
+</ul>
+<section id="que-buscamos-en-el-modelo">
+<h3>🔎 ¿Qué buscamos en el modelo?<a class="headerlink" href="#que-buscamos-en-el-modelo" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Estimaciones de los coeficientes</strong> <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> que minimicen los errores.</p></li>
+<li><p><strong>Validación de los supuestos</strong> que garanticen la validez del modelo.</p></li>
+</ul>
+<p>Pasemos a los <strong>supuestos fundamentales</strong> del modelo lineal.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="estimacion-de-parametros-en-modelos-lineales">
+<h1>📌 Estimación de Parámetros en Modelos Lineales<a class="headerlink" href="#estimacion-de-parametros-en-modelos-lineales" title="Link to this heading">#</a></h1>
+<p>La estimación de los parámetros de un <strong>modelo de regresión lineal múltiple</strong> se realiza mediante el <strong>método de mínimos cuadrados ordinarios (OLS, por sus siglas en inglés)</strong>.</p>
+<section id="planteamiento-del-problema">
+<h2>✅ Planteamiento del Problema<a class="headerlink" href="#planteamiento-del-problema" title="Link to this heading">#</a></h2>
+<p>Dado un conjunto de datos con <span class="math notranslate nohighlight">\(n\)</span> observaciones y <span class="math notranslate nohighlight">\(p\)</span> variables predictoras, podemos expresar el modelo en forma matricial como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Y} \in \mathbb{R}^{n \times 1}\)</span> es el vector de respuestas (variable dependiente).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{n \times (p+1)}\)</span> es la <strong>matriz de diseño</strong>, donde cada fila representa una observación y cada columna una variable predictora. Se incluye una columna de unos para representar el término intercepto.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta} \in \mathbb{R}^{(p+1) \times 1}\)</span> es el vector de coeficientes a estimar.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon} \in \mathbb{R}^{n \times 1}\)</span> es el vector de errores aleatorios.</p></li>
+</ul>
+<p>La matriz de diseño <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> tiene la siguiente estructura:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X} =
+\begin{bmatrix}
+1 &amp; X_{11} &amp; X_{12} &amp; \dots &amp; X_{1p} \\
+1 &amp; X_{21} &amp; X_{22} &amp; \dots &amp; X_{2p} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; X_{n1} &amp; X_{n2} &amp; \dots &amp; X_{np}
+\end{bmatrix}
+\end{split}\]</div>
+<p>donde la primera columna de unos representa el <strong>término intercepto</strong> <span class="math notranslate nohighlight">\(\beta_0\)</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="criterio-de-estimacion-minimos-cuadrados-ordinarios">
+<h2>🔍 Criterio de Estimación: Mínimos Cuadrados Ordinarios<a class="headerlink" href="#criterio-de-estimacion-minimos-cuadrados-ordinarios" title="Link to this heading">#</a></h2>
+<p>El objetivo del método de mínimos cuadrados ordinarios es <strong>encontrar los coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> que minimicen la suma de los cuadrados de los errores</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+S(\boldsymbol{\beta}) = \sum_{i=1}^{n} \varepsilon_i^2 = (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})^T (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})
+\]</div>
+<p>Para minimizar esta función, derivamos con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> y resolvemos:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial S}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^T (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta}) = 0
+\]</div>
+<p>Resolviendo para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{X}^T \mathbf{X} \boldsymbol{\beta} = \mathbf{X}^T \mathbf{Y}
+\]</div>
+<p>Si la matriz <span class="math notranslate nohighlight">\(\mathbf{X}^T \mathbf{X}\)</span> es <strong>invertible</strong>, podemos despejar:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}
+\]</div>
+<p>Esta es la <strong>solución de mínimos cuadrados ordinarios (OLS)</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="propiedades-de-los-estimadores-ols">
+<h2>🧪 Propiedades de los Estimadores OLS<a class="headerlink" href="#propiedades-de-los-estimadores-ols" title="Link to this heading">#</a></h2>
+<p>Si los supuestos del modelo lineal se cumplen, los estimadores <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> presentan las siguientes propiedades:</p>
+<ol class="arabic simple">
+<li><p><strong>Insesgadez</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}[\hat{\boldsymbol{\beta}}] = \boldsymbol{\beta}\)</span></p></li>
+<li><p>En promedio, los coeficientes estimados son iguales a los valores reales.</p></li>
+</ul>
+</li>
+<li><p><strong>Varianza mínima (Eficiencia)</strong>:</p>
+<ul class="simple">
+<li><p>Entre todos los estimadores lineales insesgados, OLS tiene la menor varianza (propiedad de <strong>mínima varianza</strong> dentro de los estimadores lineales insesgados, BLUE).</p></li>
+</ul>
+</li>
+<li><p><strong>Distribución Asintótica</strong>:</p>
+<ul class="simple">
+<li><p>Si los errores son normales, los estimadores <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> siguen una distribución normal:
+$<span class="math notranslate nohighlight">\(
+\hat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^T \mathbf{X})^{-1})
+\)</span>$</p></li>
+<li><p>Si la muestra es grande, la distribución asintótica sigue siendo normal (por el Teorema del Límite Central).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="estimacion-de-la-varianza-del-error">
+<h2>🔬 Estimación de la Varianza del Error<a class="headerlink" href="#estimacion-de-la-varianza-del-error" title="Link to this heading">#</a></h2>
+<p>El <strong>error estándar de los coeficientes estimados</strong> se obtiene a partir de la varianza de los residuos:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\sigma}^2 = \frac{\sum_{i=1}^{n} \hat{\varepsilon}_i^2}{n - (p+1)}
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\varepsilon}_i = Y_i - \hat{Y}_i\)</span> son los residuos.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n - (p+1)\)</span> es el <strong>número de grados de libertad</strong>, donde <span class="math notranslate nohighlight">\(p+1\)</span> representa los coeficientes estimados (incluyendo el intercepto).</p></li>
+</ul>
+<p>La <strong>varianza de los coeficientes estimados</strong> se obtiene mediante:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}(\hat{\boldsymbol{\beta}}) = \hat{\sigma}^2 (\mathbf{X}^T \mathbf{X})^{-1}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="implementacion-en-python">
+<h2>📊 Implementación en Python<a class="headerlink" href="#implementacion-en-python" title="Link to this heading">#</a></h2>
+<p>A continuación, implementamos la estimación de parámetros usando <strong>numpy</strong> y <strong>statsmodels</strong> para validar la fórmula teórica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generamos datos simulados</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
+
+<span class="c1"># Agregamos una columna de unos para el intercepto</span>
+<span class="n">X_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">X</span><span class="p">]</span>
+
+<span class="c1"># Estimación por mínimos cuadrados ordinarios (OLS)</span>
+<span class="n">beta_ols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_design</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_design</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_design</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span>
+
+<span class="c1"># Mostramos los coeficientes estimados</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coeficientes estimados (OLS): </span><span class="si">{</span><span class="n">beta_ols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generamos datos simulados</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<section id="validacion-con-statsmodels">
+<h3>🛠️ Validación con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code><a class="headerlink" href="#validacion-con-statsmodels" title="Link to this heading">#</a></h3>
+<p>Para confirmar la estimación manual, utilizamos la biblioteca <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Ajustamos un modelo con statsmodels</span>
+<span class="n">X_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Agregar intercepto</span>
+<span class="n">modelo</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X_sm</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Mostramos los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelo</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.956
+Model:                            OLS   Adj. R-squared:                  0.955
+Method:                 Least Squares   F-statistic:                     1063.
+Date:                Sun, 02 Feb 2025   Prob (F-statistic):           1.09e-66
+Time:                        23:40:12   Log-Likelihood:                -210.27
+No. Observations:                 100   AIC:                             426.5
+Df Residuals:                      97   BIC:                             434.4
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          2.5445      0.519      4.902      0.000       1.514       3.575
+x1             2.5677      0.066     38.770      0.000       2.436       2.699
+x2             1.8710      0.071     26.393      0.000       1.730       2.012
+==============================================================================
+Omnibus:                        5.986   Durbin-Watson:                   2.104
+Prob(Omnibus):                  0.050   Jarque-Bera (JB):                5.624
+Skew:                           0.439   Prob(JB):                       0.0601
+Kurtosis:                       3.761   Cond. No.                         19.5
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>📌  Implementación en Python<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Para verificar la estimación de los parámetros, utilizamos <code class="docutils literal notranslate"><span class="pre">numpy</span></code> para la solución manual y <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> para la validación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Generamos datos simulados</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
+
+<span class="c1"># Agregamos una columna de unos para el intercepto</span>
+<span class="n">X_design</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">X</span><span class="p">]</span>
+
+<span class="c1"># Estimación por mínimos cuadrados ordinarios (OLS)</span>
+<span class="n">beta_ols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_design</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_design</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_design</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span>
+
+<span class="c1"># Mostramos los coeficientes estimados</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coeficientes estimados (OLS): </span><span class="si">{</span><span class="n">beta_ols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeficientes estimados (OLS): [2.54454453 2.56773335 1.87098921]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="supuestos-del-modelo-lineal">
+<h2>📌  Supuestos del Modelo Lineal<a class="headerlink" href="#supuestos-del-modelo-lineal" title="Link to this heading">#</a></h2>
+<p>Para que un modelo de regresión lineal sea válido, deben cumplirse los siguientes <strong>5 supuestos fundamentales</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Linealidad</strong>: La relación entre las variables explicativas y la variable respuesta es lineal.</p></li>
+<li><p><strong>Independencia</strong>: Los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son independientes.</p></li>
+<li><p><strong>Homoscedasticidad</strong>: La varianza de los errores es constante en todos los valores de <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p><strong>Normalidad</strong>: Los errores siguen una distribución normal.</p></li>
+<li><p><strong>No Multicolinealidad</strong>: No hay correlación fuerte entre las variables explicativas.</p></li>
+</ol>
+<p>Estos <strong>supuestos matemáticos</strong> garantizan la validez de las estimaciones y permiten realizar inferencias confiables. Estos supuestos son críticos para que los estimadores obtenidos mediante el método de <strong>mínimos cuadrados ordinarios (OLS)</strong> sean insesgados, eficientes y consistentes.</p>
+</section>
+<hr class="docutils" />
+<section id="supuesto-de-linealidad">
+<h2>📌 Supuesto de Linealidad<a class="headerlink" href="#supuesto-de-linealidad" title="Link to this heading">#</a></h2>
+<p>El <strong>supuesto de linealidad</strong> establece que la relación entre las variables independientes <span class="math notranslate nohighlight">\(X\)</span> y la variable dependiente <span class="math notranslate nohighlight">\(Y\)</span> debe ser <strong>lineal en los parámetros</strong>. Matemáticamente, el modelo de regresión lineal simple se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \dots, n \]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Y_i\)</span> es la variable dependiente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X_i\)</span> es la variable independiente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> son los parámetros del modelo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> es el término de error, que recoge la variabilidad no explicada por <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+</ul>
+<p>Para el caso de regresión múltiple con <span class="math notranslate nohighlight">\(p\)</span> predictores:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \dots + \beta_p X_{ip} + \varepsilon_i \]</div>
+<p>El supuesto de linealidad no implica que los datos deban seguir una distribución lineal, sino que <strong>la relación funcional entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> debe ser representable mediante una combinación lineal de los parámetros</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="evaluacion-del-supuesto-de-linealidad">
+<h2>🔍 Evaluación del Supuesto de Linealidad<a class="headerlink" href="#evaluacion-del-supuesto-de-linealidad" title="Link to this heading">#</a></h2>
+<p>Existen varios métodos para evaluar si la relación entre las variables es lineal:</p>
+<ol class="arabic simple">
+<li><p><strong>Análisis gráfico</strong>: El <strong>gráfico de residuos vs. valores ajustados</strong> es una herramienta fundamental. Si los residuos presentan <strong>patrones sistemáticos</strong> (como curvaturas), la relación puede no ser lineal.</p></li>
+<li><p><strong>Prueba de Ramsey RESET</strong>: Una prueba formal que permite evaluar si el modelo omite términos no lineales significativos.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.outliers_influence</span><span class="w"> </span><span class="kn">import</span> <span class="n">reset_ramsey</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="analisis-grafico-residuos-vs-valores-ajustados">
+<h3>📊 Análisis Gráfico: Residuos vs. Valores Ajustados<a class="headerlink" href="#analisis-grafico-residuos-vs-valores-ajustados" title="Link to this heading">#</a></h3>
+<p>El análisis gráfico es una de las herramientas más intuitivas para evaluar la <strong>linealidad</strong> del modelo. Si el modelo es correctamente especificado, los residuos deben distribuirse <strong>aleatoriamente</strong> alrededor de cero sin presentar patrones.</p>
+<section id="posibles-senales-de-no-linealidad-en-los-residuos">
+<h4>🚨 Posibles señales de no linealidad en los residuos:<a class="headerlink" href="#posibles-senales-de-no-linealidad-en-los-residuos" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Curvaturas</strong>: Indican que la relación entre <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(Y\)</span> puede ser cuadrática o polinómica.</p></li>
+<li><p><strong>Patrones sistemáticos</strong>: Sugieren la omisión de una transformación o variable explicativa.</p></li>
+</ul>
+<p>A continuación, generamos un ejemplo con una relación cuadrática para visualizar cómo se comportan los residuos cuando la linealidad no se cumple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación de datos con una relación cuadrática</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">Y_nolineal</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+
+<span class="c1"># Ajuste de modelo lineal incorrecto</span>
+<span class="n">X_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">modelo</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y_nolineal</span><span class="p">,</span> <span class="n">X_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Gráfico de residuos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">modelo</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">modelo</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores Ajustados&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico de Residuos para Evaluar Linealidad&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1c09011ff3e26d39374f173c57e7a703c3396f9f5bacd7f3bb320665bcf9447e.png" src="_images/1c09011ff3e26d39374f173c57e7a703c3396f9f5bacd7f3bb320665bcf9447e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="prueba-de-ramsey-reset">
+<h3>🧪 Prueba de Ramsey RESET<a class="headerlink" href="#prueba-de-ramsey-reset" title="Link to this heading">#</a></h3>
+<p>La <strong>prueba de Ramsey RESET</strong> es un procedimiento estadístico que evalúa si el modelo de regresión omite términos no lineales importantes.</p>
+<section id="que-evalua-esta-prueba">
+<h4>📌 ¿Qué evalúa esta prueba?<a class="headerlink" href="#que-evalua-esta-prueba" title="Link to this heading">#</a></h4>
+<p>La prueba consiste en incluir <strong>potencias de los valores ajustados</strong> en el modelo y evaluar si estas contribuyen significativamente a la explicación de la variable dependiente.</p>
+<p>Matemáticamente, si nuestro modelo inicial es:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i \]</div>
+<p>La prueba Ramsey RESET introduce términos adicionales:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_i + \gamma_1 \hat{Y}_i^2 + \gamma_2 \hat{Y}_i^3 + \dots + \varepsilon_i \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{Y}_i\)</span> son los valores ajustados del modelo original. La hipótesis nula y alternativa son:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span>: El modelo está correctamente especificado (no se necesitan términos no lineales).</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1\)</span>: El modelo está mal especificado (se requieren términos no lineales).</p></li>
+</ul>
+<p>Si el <strong>p-valor</strong> es menor a <strong>0.05</strong>, existe evidencia suficiente para rechazar <span class="math notranslate nohighlight">\(H_0\)</span> y concluir que el modelo no es lineal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prueba de Ramsey RESET para especificación del modelo</span>
+<span class="n">reset_test</span> <span class="o">=</span> <span class="n">reset_ramsey</span><span class="p">(</span><span class="n">modelo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba de Ramsey RESET: estadístico = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p-valor = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula. Se recomienda incluir términos no lineales.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay evidencia suficiente para rechazar la hipótesis nula. La linealidad es adecuada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prueba de Ramsey RESET: estadístico = 247.092, p-valor = 0.000
+Se rechaza la hipótesis nula. Se recomienda incluir términos no lineales.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="por-que-funciona-la-prueba-de-ramsey-reset">
+<h3>🔬 ¿Por qué funciona la prueba de Ramsey RESET?<a class="headerlink" href="#por-que-funciona-la-prueba-de-ramsey-reset" title="Link to this heading">#</a></h3>
+<p>La prueba de <strong>Ramsey RESET (Regression Equation Specification Error Test)</strong> se basa en la idea de que si un modelo de regresión está correctamente especificado, entonces los valores ajustados <span class="math notranslate nohighlight">\(\hat{Y}\)</span> no deberían contener información adicional que explique <span class="math notranslate nohighlight">\(Y\)</span> más allá de lo que ya explican las variables independientes <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Matemáticamente, si nuestro modelo original es:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i \]</div>
+<p>La prueba introduce términos no lineales de los valores ajustados <span class="math notranslate nohighlight">\(\hat{Y}\)</span> en el modelo de prueba:</p>
+<div class="math notranslate nohighlight">
+\[ Y_i = \beta_0 + \beta_1 X_i + \gamma_1 \hat{Y}_i^2 + \gamma_2 \hat{Y}_i^3 + \dots + \varepsilon_i \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{Y}_i\)</span> son los valores ajustados del modelo original.</p>
+<p>Si el modelo original es correcto, los términos adicionales <span class="math notranslate nohighlight">\(\gamma_1\)</span> y <span class="math notranslate nohighlight">\(\gamma_2\)</span> deberían ser <strong>estadísticamente no significativos</strong>, ya que no deberían explicar variabilidad adicional en <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<section id="como-se-evalua">
+<h4>📌 ¿Cómo se evalúa?<a class="headerlink" href="#como-se-evalua" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Se realiza una <strong>prueba F</strong> para comparar el modelo original con el modelo extendido.</p></li>
+<li><p>Se evalúa si agregar términos polinómicos mejora significativamente el ajuste del modelo.</p></li>
+</ul>
+</section>
+<section id="interpretacion">
+<h4>📌 Interpretación:<a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Si el p-valor es mayor a 0.05</strong>: No hay evidencia suficiente para rechazar la hipótesis nula, lo que sugiere que el modelo es adecuado.</p></li>
+<li><p><strong>Si el p-valor es menor a 0.05</strong>: Se rechaza la hipótesis nula, lo que indica que el modelo podría estar mal especificado y requerir términos no lineales.</p></li>
+</ul>
+<hr class="docutils" />
+<p>A continuación, aplicamos la prueba de Ramsey RESET a nuestro modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prueba de Ramsey RESET para especificación del modelo</span>
+<span class="n">reset_test</span> <span class="o">=</span> <span class="n">reset_ramsey</span><span class="p">(</span><span class="n">modelo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba de Ramsey RESET: estadístico = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p-valor = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula. Se recomienda incluir términos no lineales.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay evidencia suficiente para rechazar la hipótesis nula. La linealidad es adecuada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prueba de Ramsey RESET: estadístico = 247.092, p-valor = 0.000
+Se rechaza la hipótesis nula. Se recomienda incluir términos no lineales.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="supuesto-de-independencia-de-los-errores">
+<h1>📌 Supuesto de Independencia de los Errores<a class="headerlink" href="#supuesto-de-independencia-de-los-errores" title="Link to this heading">#</a></h1>
+<p>El <strong>supuesto de independencia</strong> establece que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> de un modelo de regresión deben ser <strong>mutuamente independientes</strong>. En otras palabras, el valor del error en una observación no debe estar correlacionado con el valor del error en otra observación.</p>
+<p>Matemáticamente, esto se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Cov}(\varepsilon_i, \varepsilon_j) = 0, \quad \forall i \neq j \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\text{Cov}\)</span> representa la covarianza entre los errores. Si esta covarianza es distinta de cero, hay <strong>dependencia en los errores</strong>, lo que puede indicar la presencia de <strong>autocorrelación</strong>.</p>
+<hr class="docutils" />
+<section id="importancia-del-supuesto">
+<h2>✅ Importancia del Supuesto<a class="headerlink" href="#importancia-del-supuesto" title="Link to this heading">#</a></h2>
+<p>El incumplimiento del supuesto de independencia puede llevar a:</p>
+<ul class="simple">
+<li><p><strong>Inferencias erróneas</strong>: Si los errores están correlacionados, las pruebas de hipótesis y los intervalos de confianza pueden ser incorrectos.</p></li>
+<li><p><strong>Coeficientes ineficientes</strong>: Aunque los estimadores de Mínimos Cuadrados Ordinarios (OLS) siguen siendo insesgados, dejan de ser eficientes y pueden tener varianzas más altas de lo esperado.</p></li>
+<li><p><strong>Predicciones sesgadas</strong>: Un modelo con errores correlacionados puede generar predicciones incorrectas, especialmente en datos secuenciales o temporales.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="metodos-de-deteccion">
+<h2>🔍 Métodos de Detección<a class="headerlink" href="#metodos-de-deteccion" title="Link to this heading">#</a></h2>
+<p>Para evaluar si los errores son independientes, utilizamos las siguientes herramientas:</p>
+<ol class="arabic simple">
+<li><p><strong>Análisis gráfico</strong>: El <strong>gráfico de residuos en función del tiempo o del índice</strong> permite identificar patrones en los residuos.</p></li>
+<li><p><strong>Prueba de Durbin-Watson</strong>: Es una prueba estadística diseñada para detectar <strong>autocorrelación de primer orden</strong> en los errores.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación de datos con autocorrelación en los errores</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_dep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">Y_dependencia</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X_dep</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>  <span class="c1"># Ruido acumulado genera dependencia</span>
+
+<span class="c1"># Ajuste del modelo</span>
+<span class="n">X_dep_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_dep</span><span class="p">)</span>
+<span class="n">modelo_dep</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y_dependencia</span><span class="p">,</span> <span class="n">X_dep_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Gráfico de residuos en función del índice</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modelo_dep</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Índice de la observación&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico de Residuos para Evaluar Independencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fd7ee3a63045442c97e11442ce4932549f5df335e02e5c17ad409bddfec1feba.png" src="_images/fd7ee3a63045442c97e11442ce4932549f5df335e02e5c17ad409bddfec1feba.png" />
+</div>
+</div>
+<section id="prueba-de-durbin-watson">
+<h3>🧪 Prueba de Durbin-Watson<a class="headerlink" href="#prueba-de-durbin-watson" title="Link to this heading">#</a></h3>
+<p>La <strong>prueba de Durbin-Watson</strong> evalúa la presencia de <strong>autocorrelación de primer orden</strong> en los errores del modelo.</p>
+<section id="id2">
+<h4>📌 ¿Qué evalúa esta prueba?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>La autocorrelación de primer orden se define como:</p>
+<div class="math notranslate nohighlight">
+\[ \rho = \frac{\sum_{i=2}^{n} (\varepsilon_i - \varepsilon_{i-1})^2}{\sum_{i=1}^{n} \varepsilon_i^2} \]</div>
+<p>Donde <span class="math notranslate nohighlight">\(\rho\)</span> representa el grado de correlación entre los errores consecutivos.</p>
+<p>La estadística de Durbin-Watson (<span class="math notranslate nohighlight">\(DW\)</span>) se calcula como:</p>
+<div class="math notranslate nohighlight">
+\[ DW = 2(1 - \rho) \]</div>
+</section>
+<section id="id3">
+<h4>📌 Interpretación:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(DW \approx 2\)</span></strong>: No hay autocorrelación en los errores (modelo adecuado).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(DW &lt; 1.5\)</span></strong>: Hay autocorrelación positiva (los errores consecutivos tienden a ser similares).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(DW &gt; 2.5\)</span></strong>: Hay autocorrelación negativa (los errores consecutivos tienden a alternar signos).</p></li>
+</ul>
+<hr class="docutils" />
+<p>A continuación, aplicamos la prueba de Durbin-Watson a nuestro modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">durbin_watson</span>
+
+<span class="c1"># Prueba de Durbin-Watson para independencia de los errores</span>
+<span class="n">dw_stat_dep</span> <span class="o">=</span> <span class="n">durbin_watson</span><span class="p">(</span><span class="n">modelo_dep</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estadístico Durbin-Watson: </span><span class="si">{</span><span class="n">dw_stat_dep</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Cerca de 2 indica independencia)&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">dw_stat_dep</span> <span class="o">&lt;</span> <span class="mf">1.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posible autocorrelación positiva en los errores.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">dw_stat_dep</span> <span class="o">&gt;</span> <span class="mf">2.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posible autocorrelación negativa en los errores.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay evidencia de autocorrelación en los errores.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadístico Durbin-Watson: 0.330 (Cerca de 2 indica independencia)
+Posible autocorrelación positiva en los errores.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodos-para-corregir-la-autocorrelacion">
+<h3>🔧 Métodos para Corregir la Autocorrelación<a class="headerlink" href="#metodos-para-corregir-la-autocorrelacion" title="Link to this heading">#</a></h3>
+<p>Si se detecta autocorrelación en los errores, existen diversas estrategias para corregir el problema:</p>
+<ol class="arabic simple">
+<li><p><strong>Modelos de series temporales</strong>:</p>
+<ul class="simple">
+<li><p>Si los datos presentan una estructura temporal, utilizar modelos como <strong>ARIMA</strong> o <strong>regresión con términos autorregresivos</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Incluir variables omitidas</strong>:</p>
+<ul class="simple">
+<li><p>A veces, la autocorrelación se debe a la omisión de una variable explicativa clave que no ha sido incluida en el modelo.</p></li>
+</ul>
+</li>
+<li><p><strong>Regresión con Errores Estructurados</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar modelos con <strong>errores heterocedásticos y autorregresivos (HAC)</strong> mediante técnicas como la <strong>corrección de Newey-West</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="supuesto-de-homocedasticidad">
+<h1>📌 Supuesto de Homocedasticidad<a class="headerlink" href="#supuesto-de-homocedasticidad" title="Link to this heading">#</a></h1>
+<p>El <strong>supuesto de homocedasticidad</strong> establece que la varianza de los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> es <strong>constante</strong> en todos los niveles de las variables explicativas. Matemáticamente, se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Var}(\varepsilon_i) = \sigma^2, \quad \forall i \]</div>
+<p>Si este supuesto no se cumple y la varianza de los errores varía con los valores de <span class="math notranslate nohighlight">\(X\)</span>, se dice que el modelo presenta <strong>heterocedasticidad</strong>.</p>
+<hr class="docutils" />
+<section id="id4">
+<h2>✅ Importancia del Supuesto<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>La homocedasticidad es fundamental para que los <strong>intervalos de confianza y pruebas de hipótesis sean correctos</strong>. Si hay heterocedasticidad:</p>
+<ul class="simple">
+<li><p>Los estimadores de mínimos cuadrados ordinarios (OLS) siguen siendo insesgados, pero <strong>pierden eficiencia</strong>, lo que afecta la precisión de las predicciones.</p></li>
+<li><p>Las pruebas estadísticas pueden arrojar resultados incorrectos porque los errores estándar de los coeficientes pueden estar mal estimados.</p></li>
+<li><p>El modelo puede dar más peso a ciertas observaciones, afectando la interpretación de los coeficientes.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id5">
+<h2>🔍 Métodos de Detección<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>Para evaluar si los errores son homocedásticos, utilizamos las siguientes herramientas:</p>
+<ol class="arabic simple">
+<li><p><strong>Gráfico de residuos vs. valores ajustados</strong>: Si la dispersión de los residuos cambia a medida que aumentan los valores ajustados, hay indicios de heterocedasticidad.</p></li>
+<li><p><strong>Prueba de Breusch-Pagan</strong>: Evalúa si la varianza de los errores depende de los valores de las variables explicativas.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación de datos con heterocedasticidad</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_hetero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">Y_hetero</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X_hetero</span> <span class="o">+</span> <span class="p">(</span><span class="n">X_hetero</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>  <span class="c1"># Errores aumentan con X</span>
+
+<span class="c1"># Ajuste del modelo</span>
+<span class="n">X_hetero_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_hetero</span><span class="p">)</span>
+<span class="n">modelo_hetero</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y_hetero</span><span class="p">,</span> <span class="n">X_hetero_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Gráfico de residuos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">modelo_hetero</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">modelo_hetero</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores Ajustados&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico de Residuos para Evaluar Homocedasticidad&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e53119fceff9532e0f1cc5385d929fdee7d98d7354893f43d2fdecca0ed17820.png" src="_images/e53119fceff9532e0f1cc5385d929fdee7d98d7354893f43d2fdecca0ed17820.png" />
+</div>
+</div>
+<section id="prueba-de-breusch-pagan">
+<h3>🧪 Prueba de Breusch-Pagan<a class="headerlink" href="#prueba-de-breusch-pagan" title="Link to this heading">#</a></h3>
+<p>La <strong>prueba de Breusch-Pagan</strong> evalúa si la varianza de los errores está relacionada con los valores de las variables explicativas.</p>
+<section id="id6">
+<h4>📌 ¿Qué evalúa esta prueba?<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>Si la varianza de los errores depende de <span class="math notranslate nohighlight">\(X\)</span>, entonces existe heterocedasticidad. La prueba se basa en la siguiente regresión auxiliar:</p>
+<div class="math notranslate nohighlight">
+\[ \hat{\varepsilon}^2 = \alpha_0 + \alpha_1 X_1 + \alpha_2 X_2 + \dots + \alpha_p X_p + \nu \]</div>
+<p>Se realiza una <strong>prueba de chi-cuadrado</strong> para determinar si los coeficientes <span class="math notranslate nohighlight">\(\alpha_i\)</span> son significativamente diferentes de cero.</p>
+</section>
+<section id="hipotesis-de-la-prueba">
+<h4>📌 Hipótesis de la prueba:<a class="headerlink" href="#hipotesis-de-la-prueba" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(H_0\)</span></strong>: La varianza de los errores es constante (homocedasticidad).</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(H_1\)</span></strong>: La varianza de los errores depende de <span class="math notranslate nohighlight">\(X\)</span> (heterocedasticidad).</p></li>
+</ul>
+<p>Si el <strong>p-valor</strong> es menor a <strong>0.05</strong>, se rechaza la hipótesis nula y se concluye que el modelo presenta heterocedasticidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.diagnostic</span><span class="w"> </span><span class="kn">import</span> <span class="n">het_breuschpagan</span>
+
+<span class="c1"># Prueba de Breusch-Pagan para homocedasticidad</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">pval_bp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">modelo_hetero</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">X_hetero_const</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba de Breusch-Pagan: p-valor = </span><span class="si">{</span><span class="n">pval_bp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (p &gt; 0.05 indica varianza constante)&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">pval_bp</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se detecta heterocedasticidad en el modelo.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay evidencia suficiente de heterocedasticidad.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prueba de Breusch-Pagan: p-valor = 0.000 (p &gt; 0.05 indica varianza constante)
+Se detecta heterocedasticidad en el modelo.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodos-para-corregir-la-heterocedasticidad">
+<h3>🔧 Métodos para Corregir la Heterocedasticidad<a class="headerlink" href="#metodos-para-corregir-la-heterocedasticidad" title="Link to this heading">#</a></h3>
+<p>Si la heterocedasticidad es detectada en el modelo, se pueden emplear diversas estrategias para corregirla:</p>
+<ol class="arabic simple">
+<li><p><strong>Transformaciones de la variable dependiente</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar logaritmos o raíces cuadradas a la variable <span class="math notranslate nohighlight">\(Y\)</span> puede estabilizar la varianza.</p></li>
+</ul>
+</li>
+<li><p><strong>Regresión ponderada</strong>:</p>
+<ul class="simple">
+<li><p>Dar más peso a las observaciones con menor varianza y menos peso a las observaciones con mayor varianza.</p></li>
+</ul>
+</li>
+<li><p><strong>Modelos de estimación robusta</strong>:</p>
+<ul class="simple">
+<li><p>Usar errores estándar robustos de <strong>White</strong> para ajustar las pruebas de hipótesis y obtener estimaciones correctas.</p></li>
+</ul>
+</li>
+<li><p><strong>Modelos de regresión generalizada</strong>:</p>
+<ul class="simple">
+<li><p>En modelos más avanzados, se pueden utilizar modelos como <strong>GLS (Generalized Least Squares)</strong> para corregir heterocedasticidad explícitamente.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="supuesto-de-normalidad-de-los-errores">
+<h1>📌 Supuesto de Normalidad de los Errores<a class="headerlink" href="#supuesto-de-normalidad-de-los-errores" title="Link to this heading">#</a></h1>
+<p>El <strong>supuesto de normalidad de los errores</strong> establece que los residuos del modelo de regresión deben seguir una distribución normal con media cero y varianza constante. Matemáticamente:</p>
+<div class="math notranslate nohighlight">
+\[ \varepsilon_i \sim \mathcal{N}(0, \sigma^2) \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathcal{N}(0, \sigma^2)\)</span> denota una distribución normal con media <span class="math notranslate nohighlight">\(0\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
+<p>Este supuesto es fundamental para realizar <strong>pruebas de hipótesis válidas</strong> sobre los coeficientes del modelo.</p>
+<hr class="docutils" />
+<section id="id7">
+<h2>✅ Importancia del Supuesto<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Inferencias precisas</strong>: La normalidad de los errores garantiza que las pruebas estadísticas sobre los coeficientes sean válidas.</p></li>
+<li><p><strong>Correcta construcción de intervalos de confianza</strong>: Si los errores no son normales, los intervalos de confianza y los valores p pueden estar mal estimados.</p></li>
+<li><p><strong>Modelos con supuestos fuertes</strong>: Algunos métodos avanzados, como la regresión Bayesiana, requieren supuestos más estrictos sobre la distribución de los errores.</p></li>
+</ul>
+<p>Si el tamaño muestral es grande, el <strong>Teorema del Límite Central</strong> permite que las estimaciones sean válidas aún si los errores no son perfectamente normales.</p>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>🔍 Métodos de Detección<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Para evaluar si los errores siguen una distribución normal, utilizamos las siguientes herramientas:</p>
+<ol class="arabic simple">
+<li><p><strong>Histograma y Gráfico de Densidad</strong>: Nos permite inspeccionar visualmente si los residuos tienen forma de campana.</p></li>
+<li><p><strong>Gráfico Q-Q (Quantile-Quantile)</strong>: Compara la distribución empírica de los errores con una distribución normal teórica.</p></li>
+<li><p><strong>Prueba de Shapiro-Wilk</strong>: Una prueba estadística para verificar si los errores siguen una distribución normal.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación de datos con errores no normales</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_nonnormal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">Y_nonnormal</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X_nonnormal</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Errores con distribución Laplace</span>
+
+<span class="c1"># Ajuste del modelo</span>
+<span class="n">X_nonnormal_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_nonnormal</span><span class="p">)</span>
+<span class="n">modelo_nonnormal</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y_nonnormal</span><span class="p">,</span> <span class="n">X_nonnormal_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Histograma de los residuos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">modelo_nonnormal</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de los Residuos (Evaluación de Normalidad)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/642aad34bbd280d6669556d68727030f17df94640d1709ce08150b0dbdff3c41.png" src="_images/642aad34bbd280d6669556d68727030f17df94640d1709ce08150b0dbdff3c41.png" />
+</div>
+</div>
+<section id="grafico-q-q-quantile-quantile">
+<h3>📊 Gráfico Q-Q (Quantile-Quantile)<a class="headerlink" href="#grafico-q-q-quantile-quantile" title="Link to this heading">#</a></h3>
+<p>El <strong>gráfico Q-Q</strong> compara los cuantiles de los residuos con los cuantiles de una distribución normal teórica. Si los residuos siguen una distribución normal, los puntos deben estar alineados sobre la diagonal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gráfico Q-Q para evaluar normalidad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">modelo_nonnormal</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s2">&quot;norm&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico Q-Q de los Residuos&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/32a0b8e04c093eb1b17397b8f3cca1a267b7f3fa3458005652a4ad52cbd34558.png" src="_images/32a0b8e04c093eb1b17397b8f3cca1a267b7f3fa3458005652a4ad52cbd34558.png" />
+</div>
+</div>
+</section>
+<section id="prueba-de-shapiro-wilk">
+<h3>🧪 Prueba de Shapiro-Wilk<a class="headerlink" href="#prueba-de-shapiro-wilk" title="Link to this heading">#</a></h3>
+<p>La <strong>prueba de Shapiro-Wilk</strong> evalúa la hipótesis de que los residuos siguen una distribución normal.</p>
+<section id="id9">
+<h4>📌 ¿Qué evalúa esta prueba?<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>Se calcula el coeficiente <span class="math notranslate nohighlight">\(W\)</span> que mide la correlación entre los valores observados y los valores esperados de una distribución normal.</p>
+</section>
+<section id="id10">
+<h4>📌 Hipótesis de la prueba:<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(H_0\)</span></strong>: Los errores siguen una distribución normal.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(H_1\)</span></strong>: Los errores no siguen una distribución normal.</p></li>
+</ul>
+<p>Si el <strong>p-valor</strong> es menor a <strong>0.05</strong>, se rechaza la hipótesis nula y se concluye que los errores no siguen una distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">shapiro</span>
+
+<span class="c1"># Prueba de Shapiro-Wilk para normalidad</span>
+<span class="n">shapiro_stat</span><span class="p">,</span> <span class="n">shapiro_pval</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">modelo_nonnormal</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba de Shapiro-Wilk: p-valor = </span><span class="si">{</span><span class="n">shapiro_pval</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (p &gt; 0.05 indica normalidad)&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">shapiro_pval</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se detecta no normalidad en los errores.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay evidencia suficiente para rechazar la normalidad.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prueba de Shapiro-Wilk: p-valor = 0.250 (p &gt; 0.05 indica normalidad)
+No hay evidencia suficiente para rechazar la normalidad.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodos-para-corregir-la-no-normalidad">
+<h3>🔧 Métodos para Corregir la No Normalidad<a class="headerlink" href="#metodos-para-corregir-la-no-normalidad" title="Link to this heading">#</a></h3>
+<p>Si se detecta que los errores no son normales, existen diversas estrategias para mitigar el problema:</p>
+<ol class="arabic simple">
+<li><p><strong>Transformaciones de la variable dependiente</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar <strong>logaritmos</strong>, raíz cuadrada o transformaciones de Box-Cox para modificar la distribución de los residuos.</p></li>
+</ul>
+</li>
+<li><p><strong>Uso de estimadores robustos</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar métodos como <strong>regresión robusta (Huber, RANSAC)</strong> que no dependen fuertemente de la normalidad de los errores.</p></li>
+</ul>
+</li>
+<li><p><strong>Aumento del tamaño de la muestra</strong>:</p>
+<ul class="simple">
+<li><p>Si el tamaño muestral es pequeño, la normalidad de los errores puede no observarse. Al aumentar la muestra, el <strong>Teorema del Límite Central</strong> asegura que las inferencias sigan siendo válidas.</p></li>
+</ul>
+</li>
+<li><p><strong>Usar modelos alternativos</strong>:</p>
+<ul class="simple">
+<li><p>Si los residuos siguen una distribución específica distinta de la normal, considerar modelos como <strong>regresión cuantílica</strong> o <strong>modelos de distribución flexible</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="supuesto-de-no-multicolinealidad">
+<h1>📌 Supuesto de No Multicolinealidad<a class="headerlink" href="#supuesto-de-no-multicolinealidad" title="Link to this heading">#</a></h1>
+<p>El <strong>supuesto de no multicolinealidad</strong> establece que las variables explicativas en un modelo de regresión no deben estar altamente correlacionadas entre sí. Si existe una fuerte relación lineal entre dos o más predictores, se produce <strong>multicolinealidad</strong>, lo que dificulta la estimación precisa de los coeficientes.</p>
+<p>Matemáticamente, si una variable explicativa <span class="math notranslate nohighlight">\(X_j\)</span> puede expresarse aproximadamente como una combinación lineal de otras variables:</p>
+<div class="math notranslate nohighlight">
+\[ X_j = \alpha_1 X_1 + \alpha_2 X_2 + \dots + \alpha_p X_p + \varepsilon \]</div>
+<p>entonces existe <strong>colinealidad</strong>.</p>
+<hr class="docutils" />
+<section id="id11">
+<h2>✅ Importancia del Supuesto<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Si las variables predictoras están altamente correlacionadas:</p>
+<ul class="simple">
+<li><p><strong>Los coeficientes de regresión se vuelven inestables</strong>: Pequeñas variaciones en los datos pueden causar grandes cambios en las estimaciones de los coeficientes.</p></li>
+<li><p><strong>Dificultad en la interpretación</strong>: Es difícil determinar el impacto individual de cada variable en la variable dependiente.</p></li>
+<li><p><strong>Aumento de la varianza de los coeficientes estimados</strong>: Lo que reduce la precisión del modelo.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id12">
+<h2>🔍 Métodos de Detección<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>Para evaluar si el modelo presenta multicolinealidad, utilizamos:</p>
+<ol class="arabic simple">
+<li><p><strong>Matriz de correlación</strong>: Si dos variables tienen una correlación mayor a <strong>0.8 o 0.9</strong>, hay riesgo de multicolinealidad.</p></li>
+<li><p><strong>Factor de Inflación de la Varianza (VIF)</strong>: Un <strong>VIF mayor a 10</strong> indica una correlación muy alta entre variables predictoras.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.outliers_influence</span><span class="w"> </span><span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+
+<span class="c1"># Generar datos con alta correlación</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>  <span class="c1"># Segunda variable altamente correlacionada con X1</span>
+<span class="n">X3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Variable independiente</span>
+
+<span class="c1"># Crear DataFrame</span>
+<span class="n">df_multicolinealidad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;X1&quot;</span><span class="p">:</span> <span class="n">X1</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">:</span> <span class="n">X2</span><span class="p">,</span> <span class="s2">&quot;X3&quot;</span><span class="p">:</span> <span class="n">X3</span><span class="p">})</span>
+
+<span class="c1"># Calcular la matriz de correlación</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df_multicolinealidad</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz de correlación:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+
+<span class="c1"># Calcular el VIF para cada variable</span>
+<span class="n">vif_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_multicolinealidad</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">df_multicolinealidad</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df_multicolinealidad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Factor de Inflación de la Varianza (VIF):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vif_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz de correlación:
+          X1        X2        X3
+X1  1.000000  0.999536 -0.028591
+X2  0.999536  1.000000 -0.025931
+X3 -0.028591 -0.025931  1.000000
+Factor de Inflación de la Varianza (VIF):
+  Variable          VIF
+0       X1  3824.560895
+1       X2  3843.946662
+2       X3     2.238342
+</pre></div>
+</div>
+</div>
+</div>
+<section id="interpretacion-del-factor-de-inflacion-de-la-varianza-vif">
+<h3>🧪 Interpretación del Factor de Inflación de la Varianza (VIF)<a class="headerlink" href="#interpretacion-del-factor-de-inflacion-de-la-varianza-vif" title="Link to this heading">#</a></h3>
+<p>El <strong>VIF</strong> mide cuánto aumenta la varianza de un coeficiente debido a la correlación con otras variables.</p>
+<section id="id13">
+<h4>📌 Interpretación:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>VIF <span class="math notranslate nohighlight">\(\approx 1\)</span></strong>: No hay multicolinealidad.</p></li>
+<li><p><strong>VIF entre 5 y 10</strong>: Multicolinealidad moderada (posible problema).</p></li>
+<li><p><strong>VIF &gt; 10</strong>: Multicolinealidad severa (problema grave).</p></li>
+</ul>
+<p>Si el VIF es alto, significa que la variable está fuertemente correlacionada con otras variables y puede afectar la estabilidad del modelo.</p>
+</section>
+</section>
+<section id="metodos-para-corregir-la-multicolinealidad">
+<h3>🔧 Métodos para Corregir la Multicolinealidad<a class="headerlink" href="#metodos-para-corregir-la-multicolinealidad" title="Link to this heading">#</a></h3>
+<p>Si se detecta multicolinealidad en el modelo, existen varias estrategias para corregir el problema:</p>
+<ol class="arabic simple">
+<li><p><strong>Eliminar una de las variables correlacionadas</strong>:</p>
+<ul class="simple">
+<li><p>Si dos variables tienen una correlación superior a <strong>0.9</strong>, considerar eliminar una de ellas.</p></li>
+</ul>
+</li>
+<li><p><strong>Usar técnicas de reducción de dimensionalidad</strong>:</p>
+<ul class="simple">
+<li><p>Aplicar <strong>Análisis de Componentes Principales (PCA)</strong> para reducir la redundancia en los datos.</p></li>
+</ul>
+</li>
+<li><p><strong>Transformaciones matemáticas</strong>:</p>
+<ul class="simple">
+<li><p>Si las variables representan información similar, considerar su combinación en una única variable sintética.</p></li>
+</ul>
+</li>
+<li><p><strong>Usar regularización (Ridge Regression o Lasso)</strong>:</p>
+<ul class="simple">
+<li><p>Estos métodos penalizan coeficientes grandes y reducen el impacto de la multicolinealidad.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="diagnostico-automatico-de-supuestos-en-modelos-lineales">
+<h1>📌 Diagnóstico Automático de Supuestos en Modelos Lineales<a class="headerlink" href="#diagnostico-automatico-de-supuestos-en-modelos-lineales" title="Link to this heading">#</a></h1>
+<p>Este cuaderno proporciona una función en Python que evalúa automáticamente los <strong>5 supuestos fundamentales del modelo de regresión lineal</strong>:</p>
+<p>✅ <strong>Supuesto de Linealidad</strong>: Gráfico de residuos vs. valores ajustados y prueba de Ramsey RESET.<br />
+✅ <strong>Supuesto de Independencia</strong>: Prueba de <strong>Durbin-Watson</strong> para detectar autocorrelación en los errores.<br />
+✅ <strong>Supuesto de Homocedasticidad</strong>: Prueba de <strong>Breusch-Pagan</strong> para detectar cambios en la varianza de los errores.<br />
+✅ <strong>Supuesto de Normalidad</strong>: Histograma de residuos, gráfico Q-Q y prueba de <strong>Shapiro-Wilk</strong>.<br />
+✅ <strong>Supuesto de No Multicolinealidad</strong>: Matriz de correlación y <strong>Factor de Inflación de la Varianza (VIF)</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.diagnostic</span><span class="w"> </span><span class="kn">import</span> <span class="n">het_breuschpagan</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.stattools</span><span class="w"> </span><span class="kn">import</span> <span class="n">durbin_watson</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.outliers_influence</span><span class="w"> </span><span class="kn">import</span> <span class="n">reset_ramsey</span><span class="p">,</span> <span class="n">variance_inflation_factor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">shapiro</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">diagnostico_modelo</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evalúa los cinco supuestos del modelo de regresión lineal.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    modelo : statsmodels.regression.linear_model.RegressionResultsWrapper</span>
+<span class="sd">        Modelo ajustado con statsmodels OLS.</span>
+<span class="sd">    X : ndarray o DataFrame</span>
+<span class="sd">        Matriz de predictores (sin la columna de unos para el intercepto).</span>
+<span class="sd">    Y : ndarray o Series</span>
+<span class="sd">        Vector de valores observados de la variable dependiente.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">residuos</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">resid</span>
+    <span class="n">valores_ajustados</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">fittedvalues</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔍 Evaluación de Supuestos del Modelo Lineal&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 1. Supuesto de Linealidad</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">valores_ajustados</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores Ajustados&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico de Residuos vs. Valores Ajustados (Evaluación de Linealidad)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Prueba de Ramsey RESET</span>
+    <span class="n">reset_test</span> <span class="o">=</span> <span class="n">reset_ramsey</span><span class="p">(</span><span class="n">modelo</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Prueba de Ramsey RESET: estadístico = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p-valor = </span><span class="si">{</span><span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reset_test</span><span class="o">.</span><span class="n">pvalue</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Se recomienda incluir términos no lineales en el modelo.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ No hay evidencia de no linealidad en el modelo.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Supuesto de Independencia</span>
+    <span class="n">dw_stat</span> <span class="o">=</span> <span class="n">durbin_watson</span><span class="p">(</span><span class="n">residuos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Prueba de Durbin-Watson: </span><span class="si">{</span><span class="n">dw_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Cerca de 2 indica independencia)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dw_stat</span> <span class="o">&lt;</span> <span class="mf">1.5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Posible autocorrelación positiva en los errores.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">dw_stat</span> <span class="o">&gt;</span> <span class="mf">2.5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Posible autocorrelación negativa en los errores.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ No hay evidencia de autocorrelación en los errores.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Supuesto de Homocedasticidad</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">pval_bp</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">residuos</span><span class="p">,</span> <span class="n">modelo</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Prueba de Breusch-Pagan: p-valor = </span><span class="si">{</span><span class="n">pval_bp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (p &gt; 0.05 indica varianza constante)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pval_bp</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Se detecta heterocedasticidad en el modelo.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ No hay evidencia suficiente de heterocedasticidad.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 4. Supuesto de Normalidad</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">residuos</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Residuos&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de los Residuos (Evaluación de Normalidad)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">residuos</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s2">&quot;norm&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plt</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gráfico Q-Q de los Residuos&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">shapiro_stat</span><span class="p">,</span> <span class="n">shapiro_pval</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">residuos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Prueba de Shapiro-Wilk: p-valor = </span><span class="si">{</span><span class="n">shapiro_pval</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (p &gt; 0.05 indica normalidad)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">shapiro_pval</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Se detecta no normalidad en los errores.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ No hay evidencia suficiente para rechazar la normalidad.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 5. Supuesto de No Multicolinealidad</span>
+    <span class="n">vif_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;X</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Factor de Inflación de la Varianza (VIF):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vif_data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">vif_data</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Se detecta un problema de multicolinealidad en el modelo.&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Diagnóstico Completo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="aplicacion-de-la-funcion">
+<h2>📊 Aplicación de la Función<a class="headerlink" href="#aplicacion-de-la-funcion" title="Link to this heading">#</a></h2>
+<p>Probemos la función de diagnóstico en un modelo de regresión ajustado con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generación de datos simulados</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
+<span class="n">Y_test</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
+
+<span class="c1"># Ajustamos un modelo con statsmodels</span>
+<span class="n">X_sm_test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>  <span class="c1"># Agregar intercepto</span>
+<span class="n">modelo_test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">X_sm_test</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Ejecutamos el diagnóstico automático</span>
+<span class="n">diagnostico_modelo</span><span class="p">(</span><span class="n">modelo_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔍 Evaluación de Supuestos del Modelo Lineal
+</pre></div>
+</div>
+<img alt="_images/08a3c6569b9dab0797d2561025fc754fcaf8cbc19435ea20a223ad40cb753879.png" src="_images/08a3c6569b9dab0797d2561025fc754fcaf8cbc19435ea20a223ad40cb753879.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Prueba de Ramsey RESET: estadístico = 1.155, p-valor = 0.336
+✅ No hay evidencia de no linealidad en el modelo.
+📌 Prueba de Durbin-Watson: 2.104 (Cerca de 2 indica independencia)
+✅ No hay evidencia de autocorrelación en los errores.
+📌 Prueba de Breusch-Pagan: p-valor = 0.031 (p &gt; 0.05 indica varianza constante)
+❌ Se detecta heterocedasticidad en el modelo.
+</pre></div>
+</div>
+<img alt="_images/c3909c04ec94116968a51f5dfafdea5bfba965cc4c3a4d598befc6279c4a0da7.png" src="_images/c3909c04ec94116968a51f5dfafdea5bfba965cc4c3a4d598befc6279c4a0da7.png" />
+<img alt="_images/0de66fb12e2153b1ff1c945f908af4cc3ea0bc5dcc6b68a2f809a60739cd7089.png" src="_images/0de66fb12e2153b1ff1c945f908af4cc3ea0bc5dcc6b68a2f809a60739cd7089.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Prueba de Shapiro-Wilk: p-valor = 0.070 (p &gt; 0.05 indica normalidad)
+✅ No hay evidencia suficiente para rechazar la normalidad.
+📌 Factor de Inflación de la Varianza (VIF):
+  Variable       VIF
+0       X1  2.077077
+1       X2  2.077077
+✅ Diagnóstico Completo
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">📘 Modelos Lineales con Python</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">📌 Objetivos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-son-importantes-los-modelos-lineales">🚀 ¿Por qué son importantes los Modelos Lineales?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-matematica-del-modelo-lineal">📊 Definición Matemática del Modelo Lineal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-buscamos-en-el-modelo">🔎 ¿Qué buscamos en el modelo?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-modelos-lineales">📌 Estimación de Parámetros en Modelos Lineales</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planteamiento-del-problema">✅ Planteamiento del Problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-estimacion-minimos-cuadrados-ordinarios">🔍 Criterio de Estimación: Mínimos Cuadrados Ordinarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-ols">🧪 Propiedades de los Estimadores OLS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-la-varianza-del-error">🔬 Estimación de la Varianza del Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">📊 Implementación en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-con-statsmodels">🛠️ Validación con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📌  Implementación en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-del-modelo-lineal">📌  Supuestos del Modelo Lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-linealidad">📌 Supuesto de Linealidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-supuesto-de-linealidad">🔍 Evaluación del Supuesto de Linealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-grafico-residuos-vs-valores-ajustados">📊 Análisis Gráfico: Residuos vs. Valores Ajustados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#posibles-senales-de-no-linealidad-en-los-residuos">🚨 Posibles señales de no linealidad en los residuos:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-ramsey-reset">🧪 Prueba de Ramsey RESET</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#que-evalua-esta-prueba">📌 ¿Qué evalúa esta prueba?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-funciona-la-prueba-de-ramsey-reset">🔬 ¿Por qué funciona la prueba de Ramsey RESET?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-evalua">📌 ¿Cómo se evalúa?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">📌 Interpretación:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-independencia-de-los-errores">📌 Supuesto de Independencia de los Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-del-supuesto">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-deteccion">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-durbin-watson">🧪 Prueba de Durbin-Watson</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📌 Interpretación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-autocorrelacion">🔧 Métodos para Corregir la Autocorrelación</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-homocedasticidad">📌 Supuesto de Homocedasticidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-breusch-pagan">🧪 Prueba de Breusch-Pagan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hipotesis-de-la-prueba">📌 Hipótesis de la prueba:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-heterocedasticidad">🔧 Métodos para Corregir la Heterocedasticidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-normalidad-de-los-errores">📌 Supuesto de Normalidad de los Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-q-q-quantile-quantile">📊 Gráfico Q-Q (Quantile-Quantile)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-shapiro-wilk">🧪 Prueba de Shapiro-Wilk</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">📌 ¿Qué evalúa esta prueba?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📌 Hipótesis de la prueba:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-no-normalidad">🔧 Métodos para Corregir la No Normalidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#supuesto-de-no-multicolinealidad">📌 Supuesto de No Multicolinealidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">✅ Importancia del Supuesto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">🔍 Métodos de Detección</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-factor-de-inflacion-de-la-varianza-vif">🧪 Interpretación del Factor de Inflación de la Varianza (VIF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">📌 Interpretación:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-corregir-la-multicolinealidad">🔧 Métodos para Corregir la Multicolinealidad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-automatico-de-supuestos-en-modelos-lineales">📌 Diagnóstico Automático de Supuestos en Modelos Lineales</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-la-funcion">📊 Aplicación de la Función</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea [izainea]
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
