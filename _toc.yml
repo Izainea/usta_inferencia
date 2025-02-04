@@ -4,4 +4,4 @@
 format: jb-book
 root: intro
 chapters:
-- file: Introducción a modelos lineales
+- file: intro_inferencia.ipynb

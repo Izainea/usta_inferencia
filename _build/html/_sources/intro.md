@@ -1,70 +1,132 @@
-# 📘 Modelos Lineales con Python
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
 
-## 🎯 Objetivo
+# **Introducción a la Inferencia Estadística**
 
-Este repositorio tiene como propósito proporcionar una guía completa sobre **Modelos Lineales** en el contexto de la estadística aplicada. Se abordarán desde los fundamentos teóricos hasta implementaciones prácticas utilizando **Python** y bibliotecas especializadas como `statsmodels` y `scikit-learn`. 
+## **Objetivos de la Clase**
 
-```{tableofcontents}
-```
+En esta sesión, exploraremos los fundamentos de la inferencia estadística, comprendiendo su importancia y aplicaciones en el análisis de datos. Al finalizar esta clase, serás capaz de:
 
-El repositorio está estructurado en cuadernos interactivos utilizando **Jupyter**, lo que permitirá una experiencia de aprendizaje práctica e intuitiva.
+- Diferenciar entre estadística descriptiva e inferencial.
+- Entender el papel de las distribuciones de probabilidad en la inferencia.
+- Aplicar conceptos clave como el Teorema del Límite Central.
 
-## 📂 Estructura del repositorio
+---
 
-El contenido del repositorio está dividido en las siguientes secciones:
+## **¿Qué es la Inferencia Estadística?**
 
-1. **Fundamentos de Modelos Lineales**
-   - Introducción a la regresión lineal.
-   - Supuestos del modelo.
-   - Exploración de datos y formulación del modelo.
+La inferencia estadística es el proceso de extraer conclusiones sobre una población a partir de una muestra de datos. Se basa en la teoría de la probabilidad y utiliza herramientas como estimación y pruebas de hipótesis.
 
-2. **Ajuste y Evaluación de Modelos**
-   - Métodos de estimación de parámetros.
-   - Diagnóstico del modelo.
-   - Evaluación de la calidad del ajuste.
-
-3. **Técnicas Avanzadas en Modelos Lineales**
-   - Mínimos cuadrados ponderados y generalizados.
-   - Regresión robusta.
-   - Comparación de modelos y selección de variables.
-
-4. **Modelos de Regresión Logística**
-   - Fundamentos y aplicación.
-   - Evaluación del rendimiento con métricas avanzadas.
-   - Interpretación de resultados y aplicaciones en predicción.
-
-## 🛠️ Herramientas y Tecnologías
-
-Para la implementación de los modelos, usaremos:
-
-- `numpy`, `pandas` y `matplotlib` para manipulación y visualización de datos.
-- `seaborn` para exploración visual avanzada.
-- `statsmodels` y `sklearn` para ajuste de modelos.
-
-## 🎓 Público Objetivo
-
-Este repositorio está dirigido a estudiantes, investigadores y profesionales interesados en:
-
-- Aprender a construir y evaluar modelos lineales.
-- Aplicar técnicas estadísticas en problemas reales.
-- Profundizar en modelado estadístico con herramientas de código abierto.
-
-## 🚀 Cómo Usar Este repositorio
-
-Cada capítulo contiene:
-
-- Explicaciones teóricas detalladas.
-- Ejemplos prácticos con código ejecutable.
-- Casos de estudio aplicados.
-- Tareas y ejercicios recomendados.
-
-```{note}
-Para sacar el máximo provecho de este repositorio, se recomienda tener conocimientos básicos de estadística y programación en Python.
+```{admonition} Importancia de la Inferencia Estadística
+:class: note
+Permite tomar decisiones fundamentadas con datos incompletos, siendo clave en disciplinas como economía, biomedicina y aprendizaje automático.
 ```
 
 ---
 
-A continuación, comenzaremos con la **Introducción a los Modelos Lineales**, donde exploraremos su importancia y aplicaciones.
+## **Diferencia entre Estadística Descriptiva e Inferencial**
 
+```{list-table}
+:header-rows: 1
+:widths: 30 30
 
+* - Estadística Descriptiva
+  - Estadística Inferencial
+* - Resume y organiza datos.
+  - Generaliza resultados a una población.
+* - Usa medidas como media y desviación estándar.
+  - Usa técnicas como intervalos de confianza y pruebas de hipótesis.
+* - No permite hacer predicciones.
+  - Se basa en modelos probabilísticos para realizar inferencias.
+```
 
+---
+
+## **Distribuciones de Probabilidad en Inferencia**
+
+Antes de profundizar en la inferencia, es fundamental entender las distribuciones de probabilidad más utilizadas:
+
+### **Distribución Binomial**
+- Modela el número de éxitos en una serie de ensayos independientes.
+- Se define por los parámetros $n$ (número de ensayos) y $p$ (probabilidad de éxito en cada ensayo).
+- Ejemplo: Número de veces que un cliente compra en una tienda durante 10 visitas.
+
+```{math}
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}
+```
+
+### **Distribución Normal**
+- Es continua y simétrica, modela fenómenos naturales y errores de medición.
+- Se define por su media $\mu$ y desviación estándar $\sigma$.
+- El **Teorema del Límite Central** explica por qué la normal es crucial en la inferencia.
+
+```{math}
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+```
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+x = np.linspace(-4, 4, 1000)
+y = norm.pdf(x, loc=0, scale=1)
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, color='blue', lw=2, label='Distribución Normal estándar')
+plt.fill_between(x, y, alpha=0.2, color='blue')
+plt.title('Distribución Normal')
+plt.xlabel('Valores')
+plt.ylabel('Densidad')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+---
+
+## **El Teorema del Límite Central**
+
+El **Teorema del Límite Central (TLC)** establece que, para muestras grandes, la distribución de la media muestral se aproxima a una distribución normal, independientemente de la distribución original de los datos.
+
+```{admonition} Importancia del TLC
+:class: tip
+Permite justificar el uso de métodos inferenciales basados en la normalidad, incluso cuando los datos originales no son normales.
+```
+
+**Ejemplo en Python:**
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulación del TLC con una distribución uniforme
+np.random.seed(42)
+muestras = [np.mean(np.random.uniform(0, 1, 30)) for _ in range(1000)]
+
+plt.hist(muestras, bins=30, density=True, alpha=0.7, color='blue')
+plt.title('Distribución de la media muestral (TLC)')
+plt.xlabel('Media muestral')
+plt.ylabel('Densidad')
+plt.show()
+```
+
+---
+
+## **Conclusión y Próximos Pasos**
+
+En esta clase, revisamos los conceptos fundamentales de la inferencia estadística y la importancia de las distribuciones de probabilidad en el análisis de datos. En la próxima sesión, exploraremos en detalle las **distribuciones muestrales** y su papel en la estimación y pruebas de hipótesis.
+
+```{admonition} Tarea
+:class: warning
+Reflexiona sobre la importancia del TLC en problemas reales. ¿Cómo crees que se aplica en modelos de predicción?
+```
