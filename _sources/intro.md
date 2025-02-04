@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# **Aclaraciones sobre el semestre**
+# **Introducción**
 
 ## **Contenidos del Curso**
 
