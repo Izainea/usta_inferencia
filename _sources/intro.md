@@ -10,7 +10,77 @@ kernelspec:
   name: python3
 ---
 
+# **Aclaraciones sobre el semestre**
+
+## **Contenidos del Curso**
+
+Durante este semestre, abordaremos los siguientes temas clave en inferencia estadística:
+
+1. **Distribuciones de probabilidad y su importancia en inferencia.**
+   - Concepto de variable aleatoria.
+   - Distribuciones discretas: Bernoulli, Binomial, Poisson.
+   - Distribuciones continuas: Normal, Exponencial, Chi-cuadrado.
+   - Propiedades de las distribuciones y su relevancia en inferencia.
+
+2. **Distribuciones muestrales y su uso en estimación.**
+   - Distribución de la media y varianza muestral.
+   - Distribución t de Student y su aplicación en muestras pequeñas.
+   - Distribución F y Chi-cuadrado en pruebas de varianza.
+   - Aplicaciones prácticas en simulaciones y datos reales.
+
+3. **Estimación puntual y por intervalos.**
+   - Propiedades de los estimadores: insesgadez, eficiencia y consistencia.
+   - Métodos de estimación: Máxima verosimilitud y Método de los momentos.
+   - Construcción de intervalos de confianza para medias y proporciones.
+   - Determinación del tamaño de muestra para un nivel de confianza dado.
+
+4. **Pruebas de hipótesis y su aplicación en distintos contextos.**
+   - Formulación de hipótesis nula y alternativa.
+   - Errores tipo I y II, nivel de significancia y potencia de una prueba.
+   - Pruebas para medias y varianzas en muestras grandes y pequeñas.
+   - Pruebas no paramétricas y su aplicación cuando no se cumplen supuestos de normalidad.
+
+5. **Modelos de regresión y correlación en inferencia.**
+   - Regresión lineal simple y múltiple.
+   - Supuestos del modelo de regresión y validación de los mismos.
+   - Inferencia en regresión: intervalos de confianza y pruebas sobre coeficientes.
+   - Coeficiente de correlación y análisis de correlación parcial.
+
+6. **Métodos avanzados en inferencia estadística.**
+   - Inferencia Bayesiana y comparación con métodos frecuentistas.
+   - Métodos de remuestreo: Bootstrap y Jackknife.
+   - Pruebas de bondad de ajuste y modelos de selección de hipótesis.
+   - Aplicaciones avanzadas en aprendizaje automático y modelos probabilísticos.
+
+## **Importancia de la Inferencia Estadística**
+
+La inferencia estadística permite tomar decisiones fundamentadas con datos incompletos. Su aplicación es crucial en diversas disciplinas como economía, biomedicina y aprendizaje automático.
+
+## **Metodología de Calificación**
+
+La evaluación del curso se divide en tres cortes con la siguiente ponderación:
+
+- **Primer corte:** 30%
+- **Segundo corte:** 30%
+- **Tercer corte:** 40%
+
+Cada corte incluye un examen que representa la mitad del porcentaje del corte:
+
+- **Exámenes:**
+  - Primer corte: 15%
+  - Segundo corte: 15%
+  - Tercer corte: 20%
+
+### **Fechas Importantes**
+- **Finalización del Primer Corte:** 21 de marzo
+- **Finalización del Segundo Corte:** 5 de mayo
+- **Finalización del Tercer Corte:** 31 de mayo
+
+---
+
 # **Introducción a la Inferencia Estadística**
+
+
 
 ## **Objetivos de la Clase**
 
