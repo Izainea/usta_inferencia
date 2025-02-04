@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>📘 Modelos Lineales con Python &#8212; Modelos Lineales</title>
+    <title>Introducción a la Inferencia Estadística &#8212; Inferencia EStadística</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modelos Lineales: Fundamentos, Estimación y Evaluación" href="Introducci%C3%B3n%20a%20modelos%20lineales.html" />
+    <link rel="next" title="Intro" href="intro_inferencia.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -149,8 +149,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Modelos Lineales - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Modelos Lineales - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Inferencia EStadística - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Inferencia EStadística - Home"/>
   
   
 </a></div>
@@ -167,18 +167,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    📘 Modelos Lineales con Python
+                    Introducción a la Inferencia Estadística
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html">Modelos Lineales: Fundamentos, Estimación y Evaluación</a></li>
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="intro_inferencia.html">Intro</a></li>
 </ul>
 
     </div>
@@ -238,7 +232,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/usta_modelos_lineales" target="_blank"
+      <li><a href="https://github.com/Izainea/usta_inferencia" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -255,7 +249,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/usta_modelos_lineales/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Izainea/usta_inferencia/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -361,7 +355,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>📘 Modelos Lineales con Python</h1>
+    <h1>Introducción a la Inferencia Estadística</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -371,11 +365,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">🎯 Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-repositorio">📂 Estructura del repositorio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-y-tecnologias">🛠️ Herramientas y Tecnologías</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publico-objetivo">🎓 Público Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-usar-este-repositorio">🚀 Cómo Usar Este repositorio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-la-clase"><strong>Objetivos de la Clase</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-inferencia-estadistica"><strong>¿Qué es la Inferencia Estadística?</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-entre-estadistica-descriptiva-e-inferencial"><strong>Diferencia entre Estadística Descriptiva e Inferencial</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuciones-de-probabilidad-en-inferencia"><strong>Distribuciones de Probabilidad en Inferencia</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-binomial"><strong>Distribución Binomial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-normal"><strong>Distribución Normal</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-teorema-del-limite-central"><strong>El Teorema del Límite Central</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-y-proximos-pasos"><strong>Conclusión y Próximos Pasos</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -387,92 +386,145 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales-con-python">
-<h1>📘 Modelos Lineales con Python<a class="headerlink" href="#modelos-lineales-con-python" title="Link to this heading">#</a></h1>
-<section id="objetivo">
-<h2>🎯 Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h2>
-<p>Este repositorio tiene como propósito proporcionar una guía completa sobre <strong>Modelos Lineales</strong> en el contexto de la estadística aplicada. Se abordarán desde los fundamentos teóricos hasta implementaciones prácticas utilizando <strong>Python</strong> y bibliotecas especializadas como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html">Modelos Lineales: Fundamentos, Estimación y Evaluación</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#estimacion-de-parametros-en-modelos-lineales">📌 Estimación de Parámetros en Modelos Lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#supuesto-de-independencia-de-los-errores">📌 Supuesto de Independencia de los Errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#supuesto-de-homocedasticidad">📌 Supuesto de Homocedasticidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#supuesto-de-normalidad-de-los-errores">📌 Supuesto de Normalidad de los Errores</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#supuesto-de-no-multicolinealidad">📌 Supuesto de No Multicolinealidad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20modelos%20lineales.html#diagnostico-automatico-de-supuestos-en-modelos-lineales">📌 Diagnóstico Automático de Supuestos en Modelos Lineales</a></li>
-</ul>
-</div>
-<p>El repositorio está estructurado en cuadernos interactivos utilizando <strong>Jupyter</strong>, lo que permitirá una experiencia de aprendizaje práctica e intuitiva.</p>
-</section>
-<section id="estructura-del-repositorio">
-<h2>📂 Estructura del repositorio<a class="headerlink" href="#estructura-del-repositorio" title="Link to this heading">#</a></h2>
-<p>El contenido del repositorio está dividido en las siguientes secciones:</p>
-<ol class="arabic simple">
-<li><p><strong>Fundamentos de Modelos Lineales</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-la-inferencia-estadistica">
+<h1><strong>Introducción a la Inferencia Estadística</strong><a class="headerlink" href="#introduccion-a-la-inferencia-estadistica" title="Link to this heading">#</a></h1>
+<section id="objetivos-de-la-clase">
+<h2><strong>Objetivos de la Clase</strong><a class="headerlink" href="#objetivos-de-la-clase" title="Link to this heading">#</a></h2>
+<p>En esta sesión, exploraremos los fundamentos de la inferencia estadística, comprendiendo su importancia y aplicaciones en el análisis de datos. Al finalizar esta clase, serás capaz de:</p>
 <ul class="simple">
-<li><p>Introducción a la regresión lineal.</p></li>
-<li><p>Supuestos del modelo.</p></li>
-<li><p>Exploración de datos y formulación del modelo.</p></li>
-</ul>
-</li>
-<li><p><strong>Ajuste y Evaluación de Modelos</strong></p>
-<ul class="simple">
-<li><p>Métodos de estimación de parámetros.</p></li>
-<li><p>Diagnóstico del modelo.</p></li>
-<li><p>Evaluación de la calidad del ajuste.</p></li>
-</ul>
-</li>
-<li><p><strong>Técnicas Avanzadas en Modelos Lineales</strong></p>
-<ul class="simple">
-<li><p>Mínimos cuadrados ponderados y generalizados.</p></li>
-<li><p>Regresión robusta.</p></li>
-<li><p>Comparación de modelos y selección de variables.</p></li>
-</ul>
-</li>
-<li><p><strong>Modelos de Regresión Logística</strong></p>
-<ul class="simple">
-<li><p>Fundamentos y aplicación.</p></li>
-<li><p>Evaluación del rendimiento con métricas avanzadas.</p></li>
-<li><p>Interpretación de resultados y aplicaciones en predicción.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="herramientas-y-tecnologias">
-<h2>🛠️ Herramientas y Tecnologías<a class="headerlink" href="#herramientas-y-tecnologias" title="Link to this heading">#</a></h2>
-<p>Para la implementación de los modelos, usaremos:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> y <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> para manipulación y visualización de datos.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">seaborn</span></code> para exploración visual avanzada.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> para ajuste de modelos.</p></li>
+<li><p>Diferenciar entre estadística descriptiva e inferencial.</p></li>
+<li><p>Entender el papel de las distribuciones de probabilidad en la inferencia.</p></li>
+<li><p>Aplicar conceptos clave como el Teorema del Límite Central.</p></li>
 </ul>
 </section>
-<section id="publico-objetivo">
-<h2>🎓 Público Objetivo<a class="headerlink" href="#publico-objetivo" title="Link to this heading">#</a></h2>
-<p>Este repositorio está dirigido a estudiantes, investigadores y profesionales interesados en:</p>
-<ul class="simple">
-<li><p>Aprender a construir y evaluar modelos lineales.</p></li>
-<li><p>Aplicar técnicas estadísticas en problemas reales.</p></li>
-<li><p>Profundizar en modelado estadístico con herramientas de código abierto.</p></li>
-</ul>
-</section>
-<section id="como-usar-este-repositorio">
-<h2>🚀 Cómo Usar Este repositorio<a class="headerlink" href="#como-usar-este-repositorio" title="Link to this heading">#</a></h2>
-<p>Cada capítulo contiene:</p>
-<ul class="simple">
-<li><p>Explicaciones teóricas detalladas.</p></li>
-<li><p>Ejemplos prácticos con código ejecutable.</p></li>
-<li><p>Casos de estudio aplicados.</p></li>
-<li><p>Tareas y ejercicios recomendados.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Para sacar el máximo provecho de este repositorio, se recomienda tener conocimientos básicos de estadística y programación en Python.</p>
-</div>
 <hr class="docutils" />
-<p>A continuación, comenzaremos con la <strong>Introducción a los Modelos Lineales</strong>, donde exploraremos su importancia y aplicaciones.</p>
+<section id="que-es-la-inferencia-estadistica">
+<h2><strong>¿Qué es la Inferencia Estadística?</strong><a class="headerlink" href="#que-es-la-inferencia-estadistica" title="Link to this heading">#</a></h2>
+<p>La inferencia estadística es el proceso de extraer conclusiones sobre una población a partir de una muestra de datos. Se basa en la teoría de la probabilidad y utiliza herramientas como estimación y pruebas de hipótesis.</p>
+<div class="note admonition">
+<p class="admonition-title">Importancia de la Inferencia Estadística</p>
+<p>Permite tomar decisiones fundamentadas con datos incompletos, siendo clave en disciplinas como economía, biomedicina y aprendizaje automático.</p>
+</div>
 </section>
+<hr class="docutils" />
+<section id="diferencia-entre-estadistica-descriptiva-e-inferencial">
+<h2><strong>Diferencia entre Estadística Descriptiva e Inferencial</strong><a class="headerlink" href="#diferencia-entre-estadistica-descriptiva-e-inferencial" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Estadística Descriptiva</p></th>
+<th class="head"><p>Estadística Inferencial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Resume y organiza datos.</p></td>
+<td><p>Generaliza resultados a una población.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Usa medidas como media y desviación estándar.</p></td>
+<td><p>Usa técnicas como intervalos de confianza y pruebas de hipótesis.</p></td>
+</tr>
+<tr class="row-even"><td><p>No permite hacer predicciones.</p></td>
+<td><p>Se basa en modelos probabilísticos para realizar inferencias.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="distribuciones-de-probabilidad-en-inferencia">
+<h2><strong>Distribuciones de Probabilidad en Inferencia</strong><a class="headerlink" href="#distribuciones-de-probabilidad-en-inferencia" title="Link to this heading">#</a></h2>
+<p>Antes de profundizar en la inferencia, es fundamental entender las distribuciones de probabilidad más utilizadas:</p>
+<section id="distribucion-binomial">
+<h3><strong>Distribución Binomial</strong><a class="headerlink" href="#distribucion-binomial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Modela el número de éxitos en una serie de ensayos independientes.</p></li>
+<li><p>Se define por los parámetros <span class="math notranslate nohighlight">\(n\)</span> (número de ensayos) y <span class="math notranslate nohighlight">\(p\)</span> (probabilidad de éxito en cada ensayo).</p></li>
+<li><p>Ejemplo: Número de veces que un cliente compra en una tienda durante 10 visitas.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}\]</div>
+</section>
+<section id="distribucion-normal">
+<h3><strong>Distribución Normal</strong><a class="headerlink" href="#distribucion-normal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Es continua y simétrica, modela fenómenos naturales y errores de medición.</p></li>
+<li><p>Se define por su media <span class="math notranslate nohighlight">\(\mu\)</span> y desviación estándar <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+<li><p>El <strong>Teorema del Límite Central</strong> explica por qué la normal es crucial en la inferencia.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Distribución Normal estándar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución Normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Densidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1a8c51cdf121cbc111e88bb502f369e65d402d241a6706ce399a279bfe4e3dd5.png" src="_images/1a8c51cdf121cbc111e88bb502f369e65d402d241a6706ce399a279bfe4e3dd5.png" />
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="el-teorema-del-limite-central">
+<h2><strong>El Teorema del Límite Central</strong><a class="headerlink" href="#el-teorema-del-limite-central" title="Link to this heading">#</a></h2>
+<p>El <strong>Teorema del Límite Central (TLC)</strong> establece que, para muestras grandes, la distribución de la media muestral se aproxima a una distribución normal, independientemente de la distribución original de los datos.</p>
+<div class="tip admonition">
+<p class="admonition-title">Importancia del TLC</p>
+<p>Permite justificar el uso de métodos inferenciales basados en la normalidad, incluso cuando los datos originales no son normales.</p>
+</div>
+<p><strong>Ejemplo en Python:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Simulación del TLC con una distribución uniforme</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">muestras</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">muestras</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de la media muestral (TLC)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Media muestral&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Densidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9a4f4303380a0b06281bd76c56e33cca97da83590c8cdcb5bd4fb34a85fb9feb.png" src="_images/9a4f4303380a0b06281bd76c56e33cca97da83590c8cdcb5bd4fb34a85fb9feb.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="conclusion-y-proximos-pasos">
+<h2><strong>Conclusión y Próximos Pasos</strong><a class="headerlink" href="#conclusion-y-proximos-pasos" title="Link to this heading">#</a></h2>
+<p>En esta clase, revisamos los conceptos fundamentales de la inferencia estadística y la importancia de las distribuciones de probabilidad en el análisis de datos. En la próxima sesión, exploraremos en detalle las <strong>distribuciones muestrales</strong> y su papel en la estimación y pruebas de hipótesis.</p>
+<div class="warning admonition">
+<p class="admonition-title">Tarea</p>
+<p>Reflexiona sobre la importancia del TLC en problemas reales. ¿Cómo crees que se aplica en modelos de predicción?</p>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -506,11 +558,11 @@
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="Introducci%C3%B3n%20a%20modelos%20lineales.html"
+       href="intro_inferencia.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modelos Lineales: Fundamentos, Estimación y Evaluación</p>
+        <p class="prev-next-title">Intro</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -531,11 +583,16 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">🎯 Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-del-repositorio">📂 Estructura del repositorio</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-y-tecnologias">🛠️ Herramientas y Tecnologías</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publico-objetivo">🎓 Público Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-usar-este-repositorio">🚀 Cómo Usar Este repositorio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-la-clase"><strong>Objetivos de la Clase</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-la-inferencia-estadistica"><strong>¿Qué es la Inferencia Estadística?</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-entre-estadistica-descriptiva-e-inferencial"><strong>Diferencia entre Estadística Descriptiva e Inferencial</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribuciones-de-probabilidad-en-inferencia"><strong>Distribuciones de Probabilidad en Inferencia</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-binomial"><strong>Distribución Binomial</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-normal"><strong>Distribución Normal</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-teorema-del-limite-central"><strong>El Teorema del Límite Central</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-y-proximos-pasos"><strong>Conclusión y Próximos Pasos</strong></a></li>
 </ul>
   </nav></div>
 

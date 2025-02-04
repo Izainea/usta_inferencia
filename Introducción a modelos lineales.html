@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Modelos Lineales: Fundamentos, Estimación y Evaluación &#8212; Modelos Lineales</title>
+    <title>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación &#8212; Modelos Lineales</title>
   
   
   
@@ -170,7 +170,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelos Lineales: Fundamentos, Estimación y Evaluación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a></li>
 
 
 
@@ -236,7 +236,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/usta_modelos_lineales" target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -253,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/Izainea/usta_modelos_lineales/issues/new?title=Issue%20on%20page%20%2FIntroducción a modelos lineales.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroducción a modelos lineales.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -359,7 +359,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Modelos Lineales: Fundamentos, Estimación y Evaluación</h1>
+    <h1>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -369,7 +369,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">📌 Objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-son-importantes-los-modelos-lineales">🚀 ¿Por qué son importantes los Modelos Lineales?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-matematica-del-modelo-lineal">📊 Definición Matemática del Modelo Lineal</a><ul class="nav section-nav flex-column">
@@ -477,7 +477,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales-fundamentos-estimacion-y-evaluacion">
-<h1>Modelos Lineales: Fundamentos, Estimación y Evaluación<a class="headerlink" href="#modelos-lineales-fundamentos-estimacion-y-evaluacion" title="Link to this heading">#</a></h1>
+<h1>📘 Modelos Lineales: Fundamentos, Estimación y Evaluación<a class="headerlink" href="#modelos-lineales-fundamentos-estimacion-y-evaluacion" title="Link to this heading">#</a></h1>
 <p>Este cuaderno cubre de manera <strong>formal y aplicada</strong> los modelos de regresión lineal, desde su formulación matemática hasta su implementación en Python.</p>
 <section id="objetivos">
 <h2>📌 Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading">#</a></h2>
@@ -636,9 +636,7 @@ $<span class="math notranslate nohighlight">\(
 <p>A continuación, implementamos la estimación de parámetros usando <strong>numpy</strong> y <strong>statsmodels</strong> para validar la fórmula teórica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># Generamos datos simulados</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generamos datos simulados</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
@@ -655,7 +653,15 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeficientes estimados (OLS): [2.54454453 2.56773335 1.87098921]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generamos datos simulados</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Dos predictores</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">Y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Relación lineal</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -683,7 +689,7 @@ Dep. Variable:                      y   R-squared:                       0.956
 Model:                            OLS   Adj. R-squared:                  0.955
 Method:                 Least Squares   F-statistic:                     1063.
 Date:                Sun, 02 Feb 2025   Prob (F-statistic):           1.09e-66
-Time:                        23:50:47   Log-Likelihood:                -210.27
+Time:                        23:40:12   Log-Likelihood:                -210.27
 No. Observations:                 100   AIC:                             426.5
 Df Residuals:                      97   BIC:                             434.4
 Df Model:                           2                                         
@@ -1630,7 +1636,7 @@ Factor de Inflación de la Varianza (VIF):
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📘 Modelos Lineales: Fundamentos, Estimación y Evaluación</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos">📌 Objetivos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-son-importantes-los-modelos-lineales">🚀 ¿Por qué son importantes los Modelos Lineales?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-matematica-del-modelo-lineal">📊 Definición Matemática del Modelo Lineal</a><ul class="nav section-nav flex-column">
