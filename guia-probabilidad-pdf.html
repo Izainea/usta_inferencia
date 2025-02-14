@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guía Técnica de Probabilidad</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #465669;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #2c3e50;
+        }
+        .note {
+            background-color: #f1f8ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .properties {
+            margin-left: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guía Técnica de Probabilidad</h1>
+
+    <h2>1. Fundamentos de Variables Aleatorias Discretas</h2>
+    <div class="note">
+        Una variable aleatoria discreta X es una función que asigna un valor numérico a cada resultado posible de un experimento aleatorio.
+    </div>
+
+    <h3>1.1 Función de Probabilidad</h3>
+    <div class="formula">
+        Propiedades:
+        \[p(x) \geq 0 \text{ para todo } x\]
+        \[\sum p(x) = 1\]
+    </div>
+
+    <h2>2. Esperanza Matemática (Valor Esperado)</h2>
+    
+    <h3>2.1 Definición Formal</h3>
+    <div class="formula">
+        \[E(X) = \sum x \cdot p(x)\]
+    </div>
+
+    <h3>2.2 Propiedades de la Esperanza</h3>
+    <div class="properties">
+        <ul>
+            <li>\(E(aX + b) = aE(X) + b\)</li>
+            <li>\(E(X + Y) = E(X) + E(Y)\)</li>
+            <li>\(E(aX + bY) = aE(X) + bE(Y)\)</li>
+            <li>Para una constante c: \(E(c) = c\)</li>
+            <li>Si \(X \geq 0\), entonces \(E(X) \geq 0\)</li>
+        </ul>
+    </div>
+
+    <h2>3. Varianza</h2>
+    
+    <h3>3.1 Definición Formal</h3>
+    <div class="formula">
+        \[Var(X) = E[(X - \mu)^2] = \sum (x - \mu)^2 \cdot p(x)\]
+        donde \(\mu = E(X)\)
+    </div>
+
+    <h3>3.2 Fórmula Computacional</h3>
+    <div class="formula">
+        \[Var(X) = E(X^2) - [E(X)]^2\]
+    </div>
+
+    <h3>3.3 Propiedades de la Varianza</h3>
+    <div class="properties">
+        <ul>
+            <li>\(Var(X) \geq 0\)</li>
+            <li>\(Var(aX + b) = a^2Var(X)\)</li>
+            <li>Si X e Y son independientes: \(Var(X + Y) = Var(X) + Var(Y)\)</li>
+        </ul>
+    </div>
+
+    <h2>4. Variables Aleatorias Continuas</h2>
+
+    <h3>4.1 Función de Densidad de Probabilidad (PDF)</h3>
+    <div class="formula">
+        Propiedades:
+        \[f(x) \geq 0 \text{ para todo } x\]
+        \[\int_{-\infty}^{\infty} f(x)dx = 1\]
+    </div>
+
+    <h3>4.2 Función de Distribución Acumulada (CDF)</h3>
+    <div class="formula">
+        \[F(x) = P(X \leq x) = \int_{-\infty}^x f(t)dt\]
+    </div>
+
+    <h3>4.3 Esperanza y Varianza</h3>
+    <div class="formula">
+        \[E(X) = \int_{-\infty}^{\infty} x \cdot f(x)dx\]
+        \[Var(X) = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x)dx\]
+    </div>
+
+    <h2>5. Distribuciones Importantes</h2>
+
+    <h3>5.1 Distribuciones Discretas</h3>
+    <div class="formula">
+        <h4>Binomial:</h4>
+        \[P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\]
+        \[E(X) = np, \quad Var(X) = np(1-p)\]
+        
+        <h4>Poisson:</h4>
+        \[P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}\]
+        \[E(X) = Var(X) = \lambda\]
+        
+        <h4>Geométrica:</h4>
+        \[P(X=k) = p(1-p)^{k-1}\]
+        \[E(X) = \frac{1}{p}, \quad Var(X) = \frac{1-p}{p^2}\]
+    </div>
+
+    <h3>5.2 Distribuciones Continuas</h3>
+    <div class="formula">
+        <h4>Normal:</h4>
+        \[f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]
+        \[E(X) = \mu, \quad Var(X) = \sigma^2\]
+        
+        <h4>Uniforme:</h4>
+        \[f(x) = \frac{1}{b-a} \text{ para } a \leq x \leq b\]
+        \[E(X) = \frac{a+b}{2}, \quad Var(X) = \frac{(b-a)^2}{12}\]
+        
+        <h4>Exponencial:</h4>
+        \[f(x) = \lambda e^{-\lambda x} \text{ para } x \geq 0\]
+        \[E(X) = \frac{1}{\lambda}, \quad Var(X) = \frac{1}{\lambda^2}\]
+    </div>
+
+    <h2>6. Fórmulas de Transformación</h2>
+
+    <h3>6.1 Transformación Lineal</h3>
+    <div class="formula">
+        Si \(Y = aX + b\), entonces:
+        \[E(Y) = aE(X) + b\]
+        \[Var(Y) = a^2Var(X)\]
+    </div>
+
+    <h3>6.2 Transformación No Lineal</h3>
+    <div class="formula">
+        Para \(Y = g(X)\):
+        \[E(Y) = \int_{-\infty}^{\infty} g(x) \cdot f(x)dx\]
+        \[Var(Y) = E[g(X)^2] - [E(g(X))]^2\]
+    </div>
+
+    <h2>7. Teoremas Fundamentales</h2>
+
+    <h3>7.1 Teorema de Bayes</h3>
+    <div class="formula">
+        \[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
+    </div>
+
+    <h3>7.2 Ley de Probabilidad Total</h3>
+    <div class="formula">
+        \[P(A) = \sum P(A|B_i)P(B_i)\]
+    </div>
+
+    <h2>8. Producto de Variables Aleatorias</h2>
+
+    <h3>8.1 Variables Independientes</h3>
+    <div class="formula">
+        \[E(XY) = E(X)E(Y)\]
+        \[Var(XY) = E(X)^2Var(Y) + E(Y)^2Var(X) + Var(X)Var(Y)\]
+    </div>
+
+    <h3>8.2 Variables No Independientes</h3>
+    <div class="formula">
+        \[E(XY) = E(X)E(Y) + Cov(X,Y)\]
+        \[Var(XY) = E(X)^2Var(Y) + E(Y)^2Var(X) + 2E(X)E(Y)Cov(X,Y) + [Cov(X,Y)]^2 + E[(X-\mu_X)^2(Y-\mu_Y)^2] - Var(X)Var(Y)\]
+    </div>
+
+    <div class="note">
+        Para variables normales correlacionadas:
+        \[E[(X-\mu_X)^2(Y-\mu_Y)^2] = \sigma_X^2\sigma_Y^2(1 + 2\rho^2)\]
+        donde \(\rho\) es el coeficiente de correlación
+    </div>
+
+    <h2>9. Límites y Convergencia</h2>
+
+    <h3>9.1 Teorema del Límite Central</h3>
+    <div class="formula">
+        \[\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0,1)\]
+    </div>
+
+    <h3>9.2 Ley de los Grandes Números</h3>
+    <div class="formula">
+        \[\bar{X}_n \xrightarrow{p} \mu\]
+    </div>
+
+</body>
+</html>
